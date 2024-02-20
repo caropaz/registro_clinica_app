@@ -1,6 +1,8 @@
 package com.registro_clinica.registro_clinica_app.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Domicilio {
     private String ciudad;
     private String provincia;
     
+    @JsonIgnore
     @OneToOne(mappedBy = "domicilio")
     private Paciente paciente;
 

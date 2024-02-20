@@ -3,6 +3,9 @@ package com.registro_clinica.registro_clinica_app.entities;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -11,6 +14,8 @@ import jakarta.persistence.Table;
 @Table(name = "medicos")
 public class Medico {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String apellido;
