@@ -1,6 +1,7 @@
 package com.registro_clinica.registro_clinica_app.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,15 @@ public class PacienteServiceImpl implements PacienteService{
     public Paciente save(Paciente paciente) {
        return repository.save(paciente);
     }
+
+   @Override
+   public boolean existsByDni(String dni) {
+            return repository.existsByDni(dni);
+   }
+
+   @Override
+   public Optional<Paciente> findByDni(String dni) {
+      return repository.findByDni(dni);
+   }
 
 }
