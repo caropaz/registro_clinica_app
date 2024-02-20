@@ -1,13 +1,11 @@
 package com.registro_clinica.registro_clinica_app.entities;
 
-import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,18 +17,19 @@ public class Medico {
     private Long id;
     private String nombre;
     private String apellido;
-    @OneToMany
-    @JoinTable(name = "especialidad_id" )
-    private List<EspecialidadMedico> especialidades;
+    @OneToOne
+    private EspecialidadMedico especialidad;
 
     public Medico(){
     }
-    public Medico(Long id, String nombre, String apellido, List<EspecialidadMedico> especialidades) {
+    
+    public Medico(Long id, String nombre, String apellido, EspecialidadMedico especialidad) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.especialidades = especialidades;
+        this.especialidad = especialidad;
     }
+
     public Long getId() {
         return id;
     }
@@ -49,15 +48,19 @@ public class Medico {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    public List<EspecialidadMedico> getEspecialidades() {
-        return especialidades;
+
+    public EspecialidadMedico getEspecialidad() {
+        return especialidad;
     }
-    public void setEspecialidades(List<EspecialidadMedico> especialidades) {
-        this.especialidades = especialidades;
+
+    public void setEspecialidad(EspecialidadMedico especialidad) {
+        this.especialidad = especialidad;
     }
+
     @Override
     public String toString() {
-        return "Medico [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", especialidades="
-                + especialidades + "]";
+        return "Medico [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", especialidad=" + especialidad
+                + "]";
     }
+    
 }
