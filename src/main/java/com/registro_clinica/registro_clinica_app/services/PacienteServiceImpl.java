@@ -22,6 +22,7 @@ public class PacienteServiceImpl implements PacienteService{
        return (List<Paciente>) repository.findAll();
     }
 
+    @Transactional
     @Override
     public Paciente save(Paciente paciente) {
        return repository.save(paciente);
