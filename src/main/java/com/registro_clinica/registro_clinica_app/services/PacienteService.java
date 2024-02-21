@@ -10,5 +10,8 @@ public interface PacienteService {
     Paciente save (Paciente paciente);
     boolean existsByDni (String dni);
     Optional<Paciente> findByDni(String dni);
+    Optional<Paciente> findById(Long id);
+    Optional<Paciente> update (Long id, Paciente paciente);
+    Optional<Paciente> delete (Long id);
 }
 
