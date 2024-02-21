@@ -9,6 +9,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "domicilios")
@@ -17,9 +20,21 @@ public class Domicilio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty
+    @NotBlank
+    @Size(min=3, max=30)
     private String calle;
+    @NotEmpty
+    @NotBlank
+    @Size(min=3, max=30)
     private String numero;
+    @NotEmpty
+    @NotBlank
+    @Size(min=3, max=30)
     private String ciudad;
+    @NotEmpty
+    @NotBlank
+    @Size(min=3, max=30)
     private String provincia;
     
     @JsonIgnore

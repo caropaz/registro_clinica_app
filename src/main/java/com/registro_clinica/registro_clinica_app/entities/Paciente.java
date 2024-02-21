@@ -8,6 +8,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "pacientes")
@@ -16,14 +21,24 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty
+    @NotBlank
+    @Size(min=3, max=30)
     private String nombre;
+    @NotEmpty
+    @NotBlank
+    @Size(min=3, max=30)
     private String apellido;
+    @NotEmpty
+    @NotBlank
+    @Size(min=3, max=15)
     private String dni;
+    @Min(0)
+    @Max(200)
     private Integer edad;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
-
     @OneToOne(mappedBy = "paciente")
     private HistoriaClinica historiaClinica;
 
