@@ -39,7 +39,7 @@ public class Paciente {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
-    @OneToOne(mappedBy = "paciente")
+    @OneToOne (mappedBy = "paciente", cascade = CascadeType.ALL)
     private HistoriaClinica historiaClinica;
 
     public Paciente() {

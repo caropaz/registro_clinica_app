@@ -2,6 +2,7 @@ package com.registro_clinica.registro_clinica_app.entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,10 +18,11 @@ public class HistoriaClinica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
-    @JoinColumn(name = "atencionMedica_id")
+    
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "historiaclinica")
     private List<AtencionMedica> atencionMedica;
-    @OneToOne 
+    
+    @OneToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
