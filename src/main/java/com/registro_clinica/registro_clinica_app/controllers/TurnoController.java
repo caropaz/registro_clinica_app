@@ -25,19 +25,19 @@ import jakarta.validation.Valid;
 @RequestMapping("/turno")
 public class TurnoController {
 @Autowired
-    private TurnoService serviceTurno;
+    private TurnoService service;
     
 
     @GetMapping("/listar")
     public List<Turno> listarTurnos(){
-        return serviceTurno.findAll();
+        return service.findAll();
     }
     @PostMapping
     public ResponseEntity<?> registrarTurno(@Valid @RequestBody Turno turno, BindingResult result){
          if(result.hasFieldErrors()){
             return ResponseEntity.badRequest().body("No se pudo registrar el Turno");
          }
-         Turno turnoGuardado = serviceTurno.save(turno);
+         Turno turnoGuardado = service.save(turno);
          if(turnoGuardado == null){
             return ResponseEntity.badRequest().body("No se pudo procesar por informacion incorrecta");
          }
@@ -50,7 +50,7 @@ public class TurnoController {
         if(result.hasFieldErrors()){
             return ResponseEntity.badRequest().body("No se pudo actualizar el turno");
         }
-        Optional<Turno> turnoOptional = serviceTurno.update(id, turno);
+        Optional<Turno> turnoOptional = service.update(id, turno);
 
         if (turnoOptional.isPresent()){
             return ResponseEntity.status(HttpStatus.CREATED).body(turnoOptional.orElseThrow());
@@ -60,7 +60,7 @@ public class TurnoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Turno> eliminarTurno(@PathVariable Long id){
-        Optional<Turno> turnoOptional = serviceTurno.delete(id);
+        Optional<Turno> turnoOptional = service.delete(id);
         if(turnoOptional.isPresent()){
             return ResponseEntity.ok(turnoOptional.orElseThrow());
         }
