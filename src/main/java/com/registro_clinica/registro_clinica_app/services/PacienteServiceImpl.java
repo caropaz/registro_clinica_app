@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.registro_clinica.registro_clinica_app.entities.Domicilio;
+import com.registro_clinica.registro_clinica_app.entities.HistoriaClinica;
 import com.registro_clinica.registro_clinica_app.entities.Paciente;
 import com.registro_clinica.registro_clinica_app.repositories.IPacienteRepository;
 
@@ -16,6 +17,7 @@ public class PacienteServiceImpl implements PacienteService{
 
     @Autowired
     private IPacienteRepository repository;
+    
 
     @Transactional(readOnly = true)
     @Override
@@ -32,6 +34,9 @@ public class PacienteServiceImpl implements PacienteService{
     @Transactional
     @Override
     public Paciente save(Paciente paciente) {
+      HistoriaClinica historiaClinica = new HistoriaClinica();
+      historiaClinica.setPaciente(paciente);
+      paciente.setHistoriaClinica(historiaClinica);
        return repository.save(paciente);
     }
 

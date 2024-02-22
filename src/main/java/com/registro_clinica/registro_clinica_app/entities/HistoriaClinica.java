@@ -1,8 +1,13 @@
 package com.registro_clinica.registro_clinica_app.entities;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +16,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "historia_clinica")
@@ -22,19 +29,29 @@ public class HistoriaClinica {
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "historiaclinica")
     private List<AtencionMedica> atencionMedica;
     
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
-    public HistoriaClinica(){
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "fecha_creacion")
+    private Date fechaCreacion;
 
+    public HistoriaClinica(){
+        this.atencionMedica = new ArrayList<>();
+        this.fechaCreacion = new Date();
     }
     
-    public HistoriaClinica(Long id, List<AtencionMedica> atencionMedica, Paciente paciente) {
+    
+    public HistoriaClinica(Long id,  Paciente paciente) {
         this.id = id;
-        this.atencionMedica = atencionMedica;
+        this.atencionMedica = new ArrayList<>();
         this.paciente = paciente;
+        this.fechaCreacion = new Date();
     }
+    
+
 
     public Long getId() {
         return id;
@@ -58,9 +75,21 @@ public class HistoriaClinica {
         this.atencionMedica = atencionMedica;
     }
 
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+
     @Override
     public String toString() {
-        return "HistoriaClinica [id=" + id + ", atencionMedica=" + atencionMedica + ", paciente=" + paciente + "]";
+        return "HistoriaClinica [id=" + id + ", atencionMedica=" + atencionMedica + ", paciente=" + paciente
+                + ", fechaCreacion=" + fechaCreacion + "]";
     }
     
     
