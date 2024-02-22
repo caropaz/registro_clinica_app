@@ -54,7 +54,7 @@ public class PacienteServiceImpl implements PacienteService{
    @Override
    public Optional<Paciente> update (Long id, Paciente paciente) {
       
-      Optional<Paciente> pacienteOptional = repository.findById(id);
+      Optional<Paciente> pacienteOptional = findById(id);
       
       if(pacienteOptional.isPresent()){
 
@@ -80,7 +80,7 @@ public class PacienteServiceImpl implements PacienteService{
    @Transactional
    @Override
    public Optional<Paciente> delete(Long id) {
-      Optional<Paciente> pacienteOptional  = repository.findById(id);
+      Optional<Paciente> pacienteOptional  = findById(id);
       pacienteOptional.ifPresent(paciente ->{
          repository.delete(paciente);
       });

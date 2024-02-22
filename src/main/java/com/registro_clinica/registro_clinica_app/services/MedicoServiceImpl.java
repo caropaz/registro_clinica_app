@@ -78,4 +78,9 @@ public class MedicoServiceImpl implements MedicoService {
         return repository.findById(id);
     }
 
+    @Override
+    public Optional<Medico> findByApellido(String apellido) {
+        return repository.findByApellido(apellido);
+    }
+
 }

@@ -11,5 +11,6 @@ Medico save (Medico medico);
 Optional<Medico> update (Long id, Medico medico);
 Optional<Medico> delete (Long id);
 Optional<Medico> findById(Long id);
+Optional<Medico> findByApellido(String apellido);
 
 }
