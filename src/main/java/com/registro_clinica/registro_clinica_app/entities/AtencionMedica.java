@@ -1,5 +1,7 @@
 package com.registro_clinica.registro_clinica_app.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +23,7 @@ public class AtencionMedica {
     @JoinColumn(name = "medico_id")
     private Medico medico;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "historiaclinica_id")
     private HistoriaClinica historiaclinica;
@@ -28,11 +31,14 @@ public class AtencionMedica {
     public AtencionMedica() {
     }
 
-    public AtencionMedica(Long id, String detalle, Medico medico) {
+    
+    public AtencionMedica(Long id, String detalle, Medico medico, HistoriaClinica historiaclinica) {
         this.id = id;
         this.detalle = detalle;
         this.medico = medico;
+        this.historiaclinica = historiaclinica;
     }
+
 
     public Long getId() {
         return id;
@@ -58,9 +64,26 @@ public class AtencionMedica {
         this.medico = medico;
     }
 
+
+    public HistoriaClinica getHistoriaclinica() {
+        return historiaclinica;
+    }
+
+
+    public void setHistoriaclinica(HistoriaClinica historiaclinica) {
+        this.historiaclinica = historiaclinica;
+    }
+
+
     @Override
     public String toString() {
-        return "AtencionMedica [id=" + id + ", detalle=" + detalle + ", medico=" + medico + "]";
+        return "AtencionMedica [id=" + id + ", detalle=" + detalle + ", medico=" + medico + ", historiaclinica="
+                + historiaclinica + "]";
     }
+
+
+    
+
+    
 
 }

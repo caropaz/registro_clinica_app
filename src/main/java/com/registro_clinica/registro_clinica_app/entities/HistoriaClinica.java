@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -26,6 +27,7 @@ public class HistoriaClinica {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "historiaclinica")
     private List<AtencionMedica> atencionMedica;
     
@@ -35,6 +37,7 @@ public class HistoriaClinica {
     private Paciente paciente;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",  timezone = "America/Argentina/Buenos_Aires")
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
 
