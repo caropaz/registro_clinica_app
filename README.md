@@ -1,5 +1,5 @@
 Hi!
-<p>This project is based on API Rest architecture. Data management based on JPA-Hibernate is implemented. Entity validations. Spring security to perform JWT authentications.</p>
+<p>This project is based on REST API architecture. It implements data handling using JPA-Hibernate. Entity validations are also included. Spring Security is used for JWT authentication.</p>
 
 
 ¡Hola!
